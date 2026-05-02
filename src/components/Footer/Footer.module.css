@@ -1,0 +1,81 @@
+.footer {
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  background: var(--cream-dark);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.brandScript {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--magenta);
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  opacity: 0.4;
+}
+
+.divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(43, 43, 43, 0.12);
+  margin: 0.5rem 0;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.copy {
+  font-size: 0.75rem;
+  color: var(--text-dark);
+  opacity: 0.35;
+}
+
+.colombia {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-lime);
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

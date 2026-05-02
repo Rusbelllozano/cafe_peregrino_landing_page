@@ -1,0 +1,124 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem var(--space-md);
+  transition: background var(--duration-normal) var(--ease-out),
+              backdrop-filter var(--duration-normal) var(--ease-out),
+              padding var(--duration-normal) var(--ease-out);
+}
+
+.scrolled {
+  background: rgba(245, 239, 234, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem var(--space-md);
+  box-shadow: 0 1px 0 rgba(43, 43, 43, 0.06);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.scrolled .brandName {
+  color: var(--navy);
+}
+
+.navbar:not(.scrolled) .brandName {
+  color: #fff;
+}
+
+.brandSub {
+  font-family: var(--font-script);
+  font-size: 0.75rem;
+  color: var(--magenta);
+  line-height: 1.2;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.navbar:not(.scrolled) .link {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar:not(.scrolled) .link:hover {
+  color: #fff;
+}
+
+.scrolled .link {
+  color: var(--text-dark);
+}
+
+.scrolled .link:hover {
+  color: var(--magenta);
+}
+
+.ctaLink {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  border-radius: 100px;
+  background: var(--magenta);
+  color: #fff;
+  transition: transform var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.ctaLink:hover {
+  background: var(--magenta-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(247, 37, 133, 0.25);
+}
+
+@media (max-width: 768px) {
+  .links {
+    gap: 1rem;
+  }
+
+  .link {
+    display: none;
+  }
+
+  .brandName {
+    font-size: 1.4rem;
+  }
+}
