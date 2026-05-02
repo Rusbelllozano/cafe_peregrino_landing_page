@@ -11,14 +11,14 @@ Este documento resume las definiciones visuales, comerciales, financieras y estr
 **Concepto:** café de origen con identidad espiritual, emocional y de viaje.  
 **Territorio narrativo:** montañas, cafetales, peregrinaje, propósito, origen, fe, esperanza, pausa consciente.  
 **Lugar de origen comunicado:** regiones montañosas del Meta.  
-**Altura usada en storytelling:** 1450 msnm.  
+**Altura usada en storytelling:** 550 msnm.  
 **Frase base de marca:**
 
 > Un café con pasos de peregrino, buscando a aquel que lo creó.
 
 **Versión secundaria usada en comunicación larga:**
 
-> Café de origen de las regiones montañosas del Meta, 1450 msnm. Un café con pasos de peregrino, buscando a aquel que lo creó.
+> Café de origen de las regiones montañosas del Meta, 550 msnm. Un café con pasos de peregrino, buscando a aquel que lo creó.
 
 **Tono de comunicación:** directo, emocional, artesanal, limitado, de origen, con propósito. No usar lenguaje demasiado técnico ni textos extensos en piezas de venta. Priorizar claridad, deseo y acción.
 
@@ -378,7 +378,7 @@ CANTIDAD MUY LIMITADA
 
 - Demasiadas descripciones técnicas.
 - Bloques largos de información.
-- Repetir demasiadas veces "1450 msnm".
+- Repetir demasiadas veces "550 msnm".
 - Explicar demasiado el origen en una sola pieza.
 - Información que no acelera la compra.
 
@@ -391,7 +391,7 @@ CANTIDAD MUY LIMITADA
 ```text
 Estoy lanzando algo muy especial.
 
-Este café viene de las montañas del Meta, a 1450 msnm.
+Este café viene de las montañas del Meta, a 550 msnm.
 No es solo café: es un viaje.
 
 Un café con pasos de peregrino, buscando a aquel que lo creó.

@@ -52,7 +52,7 @@ export default function Hero() {
     <section id="hero" ref={sectionRef} className={styles.hero}>
       <div ref={imageRef} className={styles.bgImage}>
         <Image
-          src="/assets/Fondo_cafetal.png"
+          src="/assets/coffe_background.jpg"
           alt="Cafetales en las regiones montañosas del Meta, Colombia"
           fill
           sizes="100vw"
@@ -63,7 +63,7 @@ export default function Hero() {
       <div className={styles.overlay} />
       <div className={styles.content}>
         <p className={`${styles.origin} hero-anim`}>
-          Regiones Montañosas del Meta · 1450 msnm
+          Regiones Montañosas del Meta · 550 msnm
         </p>
         <h1 className={`${styles.headline} hero-anim`}>
           Un Viaje

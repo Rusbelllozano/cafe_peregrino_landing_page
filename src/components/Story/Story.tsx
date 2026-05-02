@@ -82,7 +82,7 @@ export default function Story() {
             a Tu Taza
           </h2>
           <p className={`${styles.body} story-text-anim`}>
-            En las regiones montañosas del Meta, a 1450 metros sobre el nivel
+            En las regiones montañosas del Meta, a 550 metros sobre el nivel
             del mar, nace un café con propósito. Cada grano recorre un camino de
             cuidado, selección y pasión antes de llegar a tus manos.
           </p>
@@ -96,7 +96,7 @@ export default function Story() {
           </blockquote>
           <div className={`${styles.stats} story-text-anim`}>
             <div className={styles.stat}>
-              <span className={styles.statNumber}>1450</span>
+              <span className={styles.statNumber}>550</span>
               <span className={styles.statLabel}>msnm</span>
             </div>
             <div className={styles.statDivider} />
