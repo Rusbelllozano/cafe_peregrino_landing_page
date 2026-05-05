@@ -9,14 +9,16 @@ const DISCOUNT_DATABASE = [
   {
     id: "early_buyers_10",
     discount: 10,
-    text: "Gracias por tu primera compra, disfruta este descuento en tu próxima compra. Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
+    text: "Gracias por tu primera compra, disfruta este descuento en tu próxima compra, exclusivo para ti.",
+    subtext: "Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
     discount_code: "NUEVO1",
     whatsapp_message: "Hola, quiero redimir mi descuento del 10%",
   },
   {
     id: "special_20",
     discount: 20,
-    text: "¡Felicidades! Has desbloqueado un descuento especial del 20%. Disfruta tu café.",
+    text: "¡Felicidades! Has desbloqueado un descuento especial del 20%.",
+    subtext: "Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
     discount_code: "CAFE20",
     whatsapp_message: "Hola, quiero redimir mi descuento del 20%",
   },
@@ -156,10 +158,13 @@ export default function PromoPage() {
           <p className={styles.successText}>
             {matchedDiscount.text}
           </p>
+          <p className={styles.successSubtext}>
+            {matchedDiscount.subtext}
+          </p>
 
           <div className={styles.ctaWrapper}>
             <a
-              href={`https://wa.me/573001234567?text=${encodeURIComponent(matchedDiscount.whatsapp_message)}`}
+              href={`https://wa.me/573213611624?text=${encodeURIComponent(matchedDiscount.whatsapp_message)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button"

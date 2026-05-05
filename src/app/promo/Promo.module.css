@@ -229,6 +229,14 @@
   animation: fadeIn 0.8s var(--ease-out) 1s forwards;
 }
 
+.successSubtext {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-dark);
+  opacity: 0;
+  animation: fadeIn 0.8s var(--ease-out) 1s forwards;
+}
+
 .ctaWrapper {
   margin-top: var(--space-lg);
   opacity: 0;
