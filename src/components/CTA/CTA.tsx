@@ -57,11 +57,11 @@ export default function CTA() {
           </div>
         </div>
         <div className={`${styles.priceBlock} cta-anim`}>
-          <span className={styles.priceLabel}>Precio de Lanzamiento</span>
+          {/* <span className={styles.priceLabel}>Precio de Lanzamiento</span>
           <div className={styles.priceRow}>
             <span className={styles.price}>$55.000</span>
             <span className={styles.priceCurrency}>COP</span>
-          </div>
+          </div> */}
           <span className={styles.priceNote}>Por tiempo limitado</span>
         </div>
         <a

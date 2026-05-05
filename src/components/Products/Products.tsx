@@ -11,10 +11,10 @@ const products = [
     tagline: "Intenso · Cítrico · Brillante",
     notes: "Notas intensas a cacao y cítricos.",
     roast: "Media",
-    grind: "Fina",
-    weight: "250 g",
+    grind: "Fina o Grano entero",
+    weight: "250 g - 500 g",
     price: "$25.000",
-    image: "/assets/excelso_product.png",
+    image: "/assets/cafe_excelso.png",
     accent: "var(--magenta)",
   },
   {
@@ -23,10 +23,10 @@ const products = [
     tagline: "Suave · Balanceado · Envolvente",
     notes: "Notas a chocolate y cítricos.",
     roast: "Media",
-    grind: "Fina",
-    weight: "250 g",
+    grind: "Fina o Grano entero",
+    weight: "250 g - 500 g",
     price: "$30.000",
-    image: "/assets/premium_product.png",
+    image: "/assets/cafe_premium.png",
     accent: "var(--orange)",
   },
 ];
@@ -91,10 +91,10 @@ export default function Products() {
                     <span className={styles.specValue}>{product.weight}</span>
                   </div>
                 </div>
-                <div className={styles.priceRow}>
+                {/* <div className={styles.priceRow}>
                   <span className={styles.price}>{product.price}</span>
                   <span className={styles.priceCurrency}>COP</span>
-                </div>
+                </div> */}
               </div>
             </article>
           ))}

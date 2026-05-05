@@ -9,8 +9,8 @@ const DISCOUNT_DATABASE = [
   {
     id: "early_buyers_10",
     discount: 10,
-    text: "Gracias por tu primera compra, queremos que tengas un descuento del 10% por tu apoyo.",
-    discount_code: "EARLY1",
+    text: "Gracias por tu primera compra, disfruta este descuento en tu próxima compra. Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
+    discount_code: "NUEVO1",
     whatsapp_message: "Hola, quiero redimir mi descuento del 10%",
   },
   {
@@ -52,7 +52,7 @@ export default function PromoPage() {
     // Convert to uppercase and limit length
     const value = e.target.value.toUpperCase().slice(0, CODE_LENGTH);
     setCode(value);
-    
+
     // Reset error when typing
     if (isError) setIsError(false);
 
@@ -64,7 +64,7 @@ export default function PromoPage() {
 
   const checkCode = (valueToCheck: string) => {
     const found = DISCOUNT_DATABASE.find((item) => item.discount_code === valueToCheck);
-    
+
     if (found) {
       setMatchedDiscount(found);
     } else {
@@ -87,7 +87,7 @@ export default function PromoPage() {
           <p className={styles.inputDescription}>
             Ingresa tu código de 6 dígitos para descubrir tu beneficio.
           </p>
-          
+
           <div className={styles.inputWrapper}>
             <input
               ref={inputRef}
@@ -103,6 +103,9 @@ export default function PromoPage() {
               Código no válido. Intenta de nuevo.
             </div>
           </div>
+          <Link href="/" className={styles.homeLink} style={{ marginTop: '2rem' }}>
+            Para saber más sobre nosotros
+          </Link>
         </div>
       )}
 
@@ -112,10 +115,10 @@ export default function PromoPage() {
           <div className={styles.imageWrapper}>
             <div className={styles.speechBubble}>Gracias!</div>
             <Image
-              src="/assets/personaje.png"
+              src="/assets/personaje_final.png"
               alt="Personaje Cafe Peregrino"
-              width={200}
-              height={200}
+              width={500}
+              height={500}
               className={styles.personajeImage}
               priority
             />
@@ -155,14 +158,17 @@ export default function PromoPage() {
           </p>
 
           <div className={styles.ctaWrapper}>
-            <a 
-              href={`https://wa.me/573001234567?text=${encodeURIComponent(matchedDiscount.whatsapp_message)}`} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={`https://wa.me/573001234567?text=${encodeURIComponent(matchedDiscount.whatsapp_message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="cta-button"
             >
-              Ir al WhatsApp
+              Ir a redimir mi descuento
             </a>
+            <Link href="/" className={styles.homeLink}>
+              Para saber más sobre nosotros
+            </Link>
           </div>
         </div>
       )}
