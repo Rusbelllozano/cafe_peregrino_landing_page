@@ -30,7 +30,7 @@ export default function Navbar() {
             Origen
           </a>
           <a
-            href="https://wa.me/573001234567?text=Hola%2C%20quiero%20pedir%20Caf%C3%A9%20Peregrino"
+            href="https://wa.me/573213611624?text=Hola%2C%20quiero%20pedir%20Caf%C3%A9%20Peregrino"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaLink}

@@ -65,7 +65,7 @@ export default function CTA() {
           <span className={styles.priceNote}>Por tiempo limitado</span>
         </div>
         <a
-          href="https://wa.me/573001234567?text=Hola%2C%20quiero%20pedir%20el%20Combo%20Peregrino"
+          href="https://wa.me/573213611624?text=Hola%2C%20quiero%20pedir%20el%20Combo%20Peregrino"
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.button} cta-anim`}
