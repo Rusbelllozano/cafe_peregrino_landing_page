@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { sendGAEvent } from "@next/third-parties/google";
 import styles from "./Promo.module.css";
 
 const DISCOUNT_DATABASE = [
@@ -168,6 +169,7 @@ export default function PromoPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button"
+              onClick={() => sendGAEvent('event', 'whatsapp_redirection', { value: 'promo' })}
             >
               Ir a redimir mi descuento
             </a>

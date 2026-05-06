@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Montserrat, Pacifico } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -55,6 +56,7 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${montserrat.variable} ${pacifico.variable}`}
     >
       <body>{children}</body>
+      <GoogleAnalytics gaId="G-GW460SJP82" />
     </html>
   );
 }

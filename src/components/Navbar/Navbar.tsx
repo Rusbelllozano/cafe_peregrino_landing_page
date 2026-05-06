@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -34,6 +35,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaLink}
+            onClick={() => sendGAEvent('event', 'whatsapp_redirection', { value: 'navbar' })}
           >
             Pedir Ahora
           </a>

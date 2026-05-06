@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { sendGAEvent } from "@next/third-parties/google";
 import styles from "./CTA.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -69,6 +70,7 @@ export default function CTA() {
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.button} cta-anim`}
+          onClick={() => sendGAEvent('event', 'whatsapp_redirection', { value: 'cta' })}
         >
           <svg
             width="20"

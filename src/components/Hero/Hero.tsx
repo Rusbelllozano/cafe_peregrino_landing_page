@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { sendGAEvent } from "@next/third-parties/google";
 import styles from "./Hero.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -80,6 +81,7 @@ export default function Hero() {
           target="_blank"
           rel="noopener noreferrer"
           className={`cta-button hero-anim`}
+          onClick={() => sendGAEvent('event', 'whatsapp_redirection', { value: 'hero' })}
         >
           <svg
             width="20"
