@@ -92,9 +92,14 @@ export default function PromoPage() {
               className={`${styles.discountInput} ${isError ? styles.error : ""}`}
               maxLength={CODE_LENGTH}
               aria-invalid={isError}
+              aria-describedby="promo-code-error"
             />
-            <div className={`${styles.errorMessage} ${isError ? styles.visible : ""}`}>
-              Código no válido. Intenta de nuevo.
+            <div
+              id="promo-code-error"
+              role="alert"
+              className={`${styles.errorMessage} ${isError ? styles.visible : ""}`}
+            >
+              {isError ? "Código no válido. Intenta de nuevo." : ""}
             </div>
           </div>
           <Link href="/" className={styles.homeLink} style={{ marginTop: '2rem' }}>
