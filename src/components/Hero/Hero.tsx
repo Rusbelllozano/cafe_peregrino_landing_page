@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { sendGAEvent } from "@next/third-parties/google";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 import styles from "./Hero.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -77,7 +78,7 @@ export default function Hero() {
           buscando a aquel que lo creó.
         </p>
         <a
-          href="https://wa.me/573213611624?text=Hola%2C%20quiero%20pedir%20Caf%C3%A9%20Peregrino"
+          href={buildWhatsAppLink("Hola, quiero pedir Café Peregrino")}
           target="_blank"
           rel="noopener noreferrer"
           className={`cta-button hero-anim`}

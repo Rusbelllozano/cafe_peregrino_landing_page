@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { sendGAEvent } from "@next/third-parties/google";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 import styles from "./Promo.module.css";
 
 const DISCOUNT_DATABASE = [
@@ -165,7 +166,7 @@ export default function PromoPage() {
 
           <div className={styles.ctaWrapper}>
             <a
-              href={`https://wa.me/573213611624?text=${encodeURIComponent(matchedDiscount.whatsapp_message)}`}
+              href={buildWhatsAppLink(matchedDiscount.whatsapp_message)}
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button"

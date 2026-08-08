@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { sendGAEvent } from "@next/third-parties/google";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 import styles from "./CTA.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -66,7 +67,7 @@ export default function CTA() {
           <span className={styles.priceNote}>Por tiempo limitado</span>
         </div>
         <a
-          href="https://wa.me/573213611624?text=Hola%2C%20quiero%20pedir%20el%20Combo%20Peregrino"
+          href={buildWhatsAppLink("Hola, quiero pedir el Combo Peregrino")}
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.button} cta-anim`}
