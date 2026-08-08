@@ -5,33 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { sendGAEvent } from "@next/third-parties/google";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
+import type { DiscountResult } from "@/lib/discounts";
 import styles from "./Promo.module.css";
-
-const DISCOUNT_DATABASE = [
-  {
-    id: "early_buyers_10",
-    discount: 10,
-    text: "Gracias por tu primera compra, disfruta este descuento en tu próxima compra, exclusivo para ti.",
-    subtext: "Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
-    discount_code: "NUEVO1",
-    whatsapp_message: "Hola, quiero redimir mi descuento del 10%",
-  },
-  {
-    id: "special_20",
-    discount: 20,
-    text: "¡Felicidades! Has desbloqueado un descuento especial del 20%.",
-    subtext: "Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
-    discount_code: "CAFE20",
-    whatsapp_message: "Hola, quiero redimir mi descuento del 20%",
-  },
-];
 
 const CODE_LENGTH = 6;
 
 export default function PromoPage() {
   const [code, setCode] = useState("");
   const [isError, setIsError] = useState(false);
-  const [matchedDiscount, setMatchedDiscount] = useState<typeof DISCOUNT_DATABASE[0] | null>(null);
+  const [matchedDiscount, setMatchedDiscount] = useState<DiscountResult | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Focus input on mount
@@ -66,15 +48,23 @@ export default function PromoPage() {
     }
   };
 
-  const checkCode = (valueToCheck: string) => {
-    const found = DISCOUNT_DATABASE.find((item) => item.discount_code === valueToCheck);
+  const checkCode = async (valueToCheck: string) => {
+    try {
+      const res = await fetch("/api/promo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: valueToCheck }),
+      });
 
-    if (found) {
-      setMatchedDiscount(found);
-    } else {
+      if (!res.ok) {
+        setIsError(true);
+        return;
+      }
+
+      const discount: DiscountResult = await res.json();
+      setMatchedDiscount(discount);
+    } catch {
       setIsError(true);
-      // Optional: Clear input or keep it so user can see what they typed
-      // setCode("");
     }
   };
 
