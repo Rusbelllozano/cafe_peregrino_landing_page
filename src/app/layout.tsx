@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     locale: "es_CO",
     images: [
       {
-        url: "/assets/coffe_background.jpg",
-        width: 5862,
-        height: 4090,
+        url: "/assets/og.jpg",
+        width: 1200,
+        height: 630,
         alt: "Cafetales en las regiones montañosas del Meta, Colombia",
       },
     ],

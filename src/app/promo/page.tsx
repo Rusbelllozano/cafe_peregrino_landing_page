@@ -13,6 +13,7 @@ const CODE_LENGTH = 6;
 export default function PromoPage() {
   const [code, setCode] = useState("");
   const [isError, setIsError] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
   const [matchedDiscount, setMatchedDiscount] = useState<DiscountResult | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -23,16 +24,21 @@ export default function PromoPage() {
     }
   }, []);
 
-  // Handle shake animation end to remove the error class
+  // Clear the shake animation after it finishes. isShaking is turned on
+  // wherever an error is raised (see setError below); isError itself stays
+  // true (driving the error text / aria state) until the user types again.
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (isError) {
-      timeoutId = setTimeout(() => {
-        setIsError(false);
-      }, 500); // 500ms matches the CSS animation duration
-    }
+    if (!isShaking) return;
+    const timeoutId = setTimeout(() => {
+      setIsShaking(false);
+    }, 500); // 500ms matches the CSS animation duration
     return () => clearTimeout(timeoutId);
-  }, [isError]);
+  }, [isShaking]);
+
+  const setError = () => {
+    setIsError(true);
+    setIsShaking(true);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Convert to uppercase and limit length
@@ -57,14 +63,14 @@ export default function PromoPage() {
       });
 
       if (!res.ok) {
-        setIsError(true);
+        setError();
         return;
       }
 
       const discount: DiscountResult = await res.json();
       setMatchedDiscount(discount);
     } catch {
-      setIsError(true);
+      setError();
     }
   };
 
@@ -89,7 +95,7 @@ export default function PromoPage() {
               value={code}
               onChange={handleInputChange}
               placeholder="000000"
-              className={`${styles.discountInput} ${isError ? styles.error : ""}`}
+              className={`${styles.discountInput} ${isError ? styles.error : ""} ${isShaking ? styles.shaking : ""}`}
               maxLength={CODE_LENGTH}
               aria-invalid={isError}
               aria-describedby="promo-code-error"
