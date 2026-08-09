@@ -9,6 +9,7 @@ import { buildWhatsAppLink } from "@/lib/whatsapp";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { products } from "./products";
 import ProductModal from "./ProductModal";
+import HeroRipple from "./HeroRipple";
 import styles from "./Hero.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -41,6 +42,7 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={sectionRef} className={styles.hero}>
+      <HeroRipple />
       <div className={styles.content}>
         <p className={`${styles.origin} hero-anim`}>
           Regiones Montañosas del Meta · 550 msnm

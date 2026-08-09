@@ -133,3 +133,33 @@
 .detailsLink:hover {
   color: #fff;
 }
+
+.rippleLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: ripple-expand 900ms ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-expand {
+  from {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
