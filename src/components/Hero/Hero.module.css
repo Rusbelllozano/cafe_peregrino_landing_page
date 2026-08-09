@@ -117,3 +117,19 @@
     gap: var(--space-md);
   }
 }
+
+.detailsLink {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.detailsLink:hover {
+  color: #fff;
+}

@@ -8,12 +8,14 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { products } from "./products";
+import ProductModal from "./ProductModal";
 import styles from "./Hero.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const modalRefs = useRef<{ [id: string]: HTMLDialogElement | null }>({});
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -81,11 +83,27 @@ export default function Hero() {
                   <WhatsAppIcon />
                   Pedir por WhatsApp
                 </a>
+                <button
+                  type="button"
+                  className={styles.detailsLink}
+                  onClick={() => modalRefs.current[product.id]?.showModal()}
+                >
+                  Ver detalles
+                </button>
               </div>
             </article>
           ))}
         </div>
       </div>
+      {products.map((product) => (
+        <ProductModal
+          key={product.id}
+          product={product}
+          ref={(el) => {
+            modalRefs.current[product.id] = el;
+          }}
+        />
+      ))}
     </section>
   );
 }
