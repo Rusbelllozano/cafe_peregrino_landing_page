@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Montserrat, Pacifico } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -24,6 +25,7 @@ const pacifico = Pacifico({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Café Peregrino — Café de Origen | Regiones Montañosas del Meta",
   description:
     "Un café con pasos de peregrino, buscando a aquel que lo creó. Café de origen de las regiones montañosas del Meta, 550 msnm. Lote limitado, primera edición.",
@@ -42,6 +44,14 @@ export const metadata: Metadata = {
       "Un café con pasos de peregrino, buscando a aquel que lo creó. Regiones montañosas del Meta, 550 msnm.",
     type: "website",
     locale: "es_CO",
+    images: [
+      {
+        url: "/assets/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cafetales en las regiones montañosas del Meta, Colombia",
+      },
+    ],
   },
 };
 

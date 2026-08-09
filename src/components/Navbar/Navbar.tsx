@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -31,7 +32,7 @@ export default function Navbar() {
             Origen
           </a>
           <a
-            href="https://wa.me/573213611624?text=Hola%2C%20quiero%20pedir%20Caf%C3%A9%20Peregrino"
+            href={buildWhatsAppLink("Hola, quiero pedir Café Peregrino")}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaLink}

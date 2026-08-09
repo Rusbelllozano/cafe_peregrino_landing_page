@@ -4,33 +4,17 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { sendGAEvent } from "@next/third-parties/google";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
+import type { DiscountResult } from "@/lib/discounts";
 import styles from "./Promo.module.css";
-
-const DISCOUNT_DATABASE = [
-  {
-    id: "early_buyers_10",
-    discount: 10,
-    text: "Gracias por tu primera compra, disfruta este descuento en tu próxima compra, exclusivo para ti.",
-    subtext: "Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
-    discount_code: "NUEVO1",
-    whatsapp_message: "Hola, quiero redimir mi descuento del 10%",
-  },
-  {
-    id: "special_20",
-    discount: 20,
-    text: "¡Felicidades! Has desbloqueado un descuento especial del 20%.",
-    subtext: "Comparte en redes para desbloquear un descuento mayor. (Debes enviar captura de pantalla de la publicacion a nuestro whatsapp)",
-    discount_code: "CAFE20",
-    whatsapp_message: "Hola, quiero redimir mi descuento del 20%",
-  },
-];
 
 const CODE_LENGTH = 6;
 
 export default function PromoPage() {
   const [code, setCode] = useState("");
   const [isError, setIsError] = useState(false);
-  const [matchedDiscount, setMatchedDiscount] = useState<typeof DISCOUNT_DATABASE[0] | null>(null);
+  const [isShaking, setIsShaking] = useState(false);
+  const [matchedDiscount, setMatchedDiscount] = useState<DiscountResult | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Focus input on mount
@@ -40,16 +24,21 @@ export default function PromoPage() {
     }
   }, []);
 
-  // Handle shake animation end to remove the error class
+  // Clear the shake animation after it finishes. isShaking is turned on
+  // wherever an error is raised (see setError below); isError itself stays
+  // true (driving the error text / aria state) until the user types again.
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (isError) {
-      timeoutId = setTimeout(() => {
-        setIsError(false);
-      }, 500); // 500ms matches the CSS animation duration
-    }
+    if (!isShaking) return;
+    const timeoutId = setTimeout(() => {
+      setIsShaking(false);
+    }, 500); // 500ms matches the CSS animation duration
     return () => clearTimeout(timeoutId);
-  }, [isError]);
+  }, [isShaking]);
+
+  const setError = () => {
+    setIsError(true);
+    setIsShaking(true);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Convert to uppercase and limit length
@@ -65,15 +54,23 @@ export default function PromoPage() {
     }
   };
 
-  const checkCode = (valueToCheck: string) => {
-    const found = DISCOUNT_DATABASE.find((item) => item.discount_code === valueToCheck);
+  const checkCode = async (valueToCheck: string) => {
+    try {
+      const res = await fetch("/api/promo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: valueToCheck }),
+      });
 
-    if (found) {
-      setMatchedDiscount(found);
-    } else {
-      setIsError(true);
-      // Optional: Clear input or keep it so user can see what they typed
-      // setCode("");
+      if (!res.ok) {
+        setError();
+        return;
+      }
+
+      const discount: DiscountResult = await res.json();
+      setMatchedDiscount(discount);
+    } catch {
+      setError();
     }
   };
 
@@ -98,12 +95,17 @@ export default function PromoPage() {
               value={code}
               onChange={handleInputChange}
               placeholder="000000"
-              className={`${styles.discountInput} ${isError ? styles.error : ""}`}
+              className={`${styles.discountInput} ${isError ? styles.error : ""} ${isShaking ? styles.shaking : ""}`}
               maxLength={CODE_LENGTH}
               aria-invalid={isError}
+              aria-describedby="promo-code-error"
             />
-            <div className={`${styles.errorMessage} ${isError ? styles.visible : ""}`}>
-              Código no válido. Intenta de nuevo.
+            <div
+              id="promo-code-error"
+              role="alert"
+              className={`${styles.errorMessage} ${isError ? styles.visible : ""}`}
+            >
+              {isError ? "Código no válido. Intenta de nuevo." : ""}
             </div>
           </div>
           <Link href="/" className={styles.homeLink} style={{ marginTop: '2rem' }}>
@@ -165,7 +167,7 @@ export default function PromoPage() {
 
           <div className={styles.ctaWrapper}>
             <a
-              href={`https://wa.me/573213611624?text=${encodeURIComponent(matchedDiscount.whatsapp_message)}`}
+              href={buildWhatsAppLink(matchedDiscount.whatsapp_message)}
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button"

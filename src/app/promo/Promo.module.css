@@ -71,6 +71,9 @@
 
 .discountInput.error {
   border-color: #e63946;
+}
+
+.discountInput.shaking {
   animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
 }
 
