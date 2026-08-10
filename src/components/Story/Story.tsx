@@ -35,7 +35,7 @@ export default function Story() {
       );
 
       ScrollTrigger.matchMedia({
-        "(min-width: 768px)": () => {
+        "(min-width: 769px)": () => {
           const steps = gsap.utils.toArray<HTMLElement>(".story-step");
           if (steps.length < 2) return;
 
@@ -58,7 +58,7 @@ export default function Story() {
             tl.to(step, { opacity: 1, duration: 1 }, index - 1);
           });
         },
-        "(max-width: 767px)": () => {
+        "(max-width: 768px)": () => {
           gsap.fromTo(
             ".story-step",
             { opacity: 0, y: 30 },
