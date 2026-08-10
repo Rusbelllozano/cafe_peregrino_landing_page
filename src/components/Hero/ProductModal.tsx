@@ -18,6 +18,7 @@ export default function ProductModal({ product, ref }: Props) {
     <dialog
       ref={ref}
       className={styles.dialog}
+      aria-labelledby={`${product.id}-modal-title`}
       onClick={(event) => {
         if (event.target === event.currentTarget) {
           event.currentTarget.close();
@@ -46,7 +47,7 @@ export default function ProductModal({ product, ref }: Props) {
           className={styles.accentLine}
           style={{ background: product.accent }}
         />
-        <h3 className={styles.name}>{product.name}</h3>
+        <h3 className={styles.name} id={`${product.id}-modal-title`}>{product.name}</h3>
         <p className={styles.tagline}>{product.tagline}</p>
         <p className={styles.notes}>{product.notes}</p>
         <div className={styles.specs}>
