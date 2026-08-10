@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { storySteps } from "./storySteps";
 import styles from "./Story.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,7 +17,6 @@ export default function Story() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      /* Text block slides in from left */
       gsap.fromTo(
         ".story-text-anim",
         { opacity: 0, x: -60 },
@@ -34,38 +34,49 @@ export default function Story() {
         }
       );
 
-      /* Image reveals from right */
-      gsap.fromTo(
-        ".story-image-anim",
-        { opacity: 0, x: 60, scale: 1.05 },
-        {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-            once: true,
-          },
-        }
-      );
+      ScrollTrigger.matchMedia({
+        "(min-width: 768px)": () => {
+          const steps = gsap.utils.toArray<HTMLElement>(".story-step");
+          if (steps.length < 2) return;
 
-      /* Parallax on image */
-      const img = section.querySelector(`.${styles.imageInner}`);
-      if (img) {
-        gsap.to(img, {
-          yPercent: 15,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
+          gsap.set(steps, { opacity: 0 });
+          gsap.set(steps[0], { opacity: 1 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: () => `+=${(steps.length - 1) * window.innerHeight}`,
+              scrub: true,
+              pin: true,
+            },
+          });
+
+          steps.forEach((step, index) => {
+            if (index === 0) return;
+            tl.to(steps[index - 1], { opacity: 0, duration: 1 }, index - 1);
+            tl.to(step, { opacity: 1, duration: 1 }, index - 1);
+          });
+        },
+        "(max-width: 767px)": () => {
+          gsap.fromTo(
+            ".story-step",
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 70%",
+                once: true,
+              },
+            }
+          );
+        },
+      });
     }, section);
 
     return () => ctx.revert();
@@ -111,17 +122,24 @@ export default function Story() {
             </div>
           </div>
         </div>
-        <div className={`${styles.imageBlock} story-image-anim`}>
+        <div className={styles.imageBlock}>
           <div className={styles.imageWrapper}>
-            <div className={styles.imageInner}>
-              <Image
-                src="/assets/story_mountains.png"
-                alt="Montañas cafeteras del Meta al amanecer"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            {storySteps.map((step, index) => (
+              <div
+                key={step.image}
+                className={`${styles.imageInner} story-step`}
+                data-step={index}
+              >
+                <Image
+                  src={step.image}
+                  alt={step.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+                <span className={styles.caption}>{step.caption}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
