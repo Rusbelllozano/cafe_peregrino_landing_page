@@ -25,9 +25,6 @@ export default function Navbar() {
           <span className={styles.brandSub}>Café y Esperanza</span>
         </a>
         <div className={styles.links}>
-          <a href="#productos" className={styles.link}>
-            Productos
-          </a>
           <a href="#origen" className={styles.link}>
             Origen
           </a>
