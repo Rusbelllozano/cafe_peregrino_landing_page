@@ -1,18 +1,66 @@
-.pageContainer {
+/* ============================================
+   Entry State (matches Hero's navy + ripple)
+   ============================================ */
+.entryState {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--navy);
+  padding: var(--space-2xl) var(--space-md) var(--space-lg);
+}
+
+.entryContent {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--space-md);
-  background-color: var(--cream);
   text-align: center;
-  overflow: hidden;
-  position: relative;
+  gap: 0.75rem;
+  max-width: var(--max-width-narrow);
+  width: 100%;
+}
+
+.origin {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-lime);
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: #fff;
+}
+
+.entryBadge {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(255, 127, 17, 0.3);
+  border-radius: 100px;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .entryState {
+    padding: var(--space-xl) var(--space-sm) var(--space-lg);
+  }
 }
 
 /* ============================================
-   Input Form State
+   Input Form Card
    ============================================ */
 .formContainer {
   display: flex;
@@ -21,19 +69,23 @@
   max-width: 400px;
   width: 100%;
   gap: var(--space-sm);
-  z-index: 10;
+  margin-top: 1rem;
+  background: rgba(245, 239, 234, 0.04);
+  border: 1px solid rgba(245, 239, 234, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg) var(--space-md);
 }
 
 .inputTitle {
   font-family: var(--font-display);
   font-size: var(--fs-h2);
-  color: var(--navy);
+  color: #fff;
   margin-bottom: var(--space-xs);
 }
 
 .inputDescription {
   font-size: var(--fs-body);
-  color: var(--text-dark);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: var(--space-md);
 }
 
@@ -78,7 +130,7 @@
 }
 
 .errorMessage {
-  color: #e63946;
+  color: #ff6b6b;
   font-size: var(--fs-small);
   font-weight: 600;
   margin-top: 0.5rem;
@@ -118,8 +170,22 @@
 }
 
 /* ============================================
-   Success State
+   Success State (unchanged, cream contrast)
    ============================================ */
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-md);
+  background-color: var(--cream);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
 .successContainer {
   display: flex;
   flex-direction: column;
@@ -262,6 +328,21 @@
 
 .homeLink:hover {
   opacity: 0.7;
+}
+
+.homeLinkOnDark {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-underline-offset: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--space-sm);
+}
+
+.homeLinkOnDark:hover {
+  opacity: 1;
+  color: #fff;
 }
 
 /* ============================================
