@@ -9,7 +9,7 @@ export default function Footer() {
           <span className={styles.brandScript}>Café y Esperanza</span>
         </div>
         <p className={styles.tagline}>
-          Café de origen · Regiones montañosas del Meta · 550 msnm
+          Café de origen · Regiones montañosas del Meta · 1200 - 1600 msnm
         </p>
         <div className={styles.divider} />
         <div className={styles.bottom}>

@@ -100,7 +100,7 @@ Array de configuración (fácil de extender agregando objetos + soltando archivo
 
 ```ts
 const storySteps = [
-  { image: "/assets/coffe_background.jpg", alt: "...", caption: "Origen · 550 msnm" },
+  { image: "/assets/coffe_background.jpg", alt: "...", caption: "Origen · 1200 - 1600 msnm" },
   { image: "/assets/story_mountains.png", alt: "...", caption: "El Cafetal" },
   { image: "/assets/personaje_final.png", alt: "...", caption: "El Peregrino" },
   { image: "/assets/cafe_excelso.png", alt: "...", caption: "Tu Taza" },

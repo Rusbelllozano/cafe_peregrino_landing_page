@@ -8,7 +8,7 @@ export const storySteps: StoryStep[] = [
   {
     image: "/assets/coffe_background.jpg",
     alt: "Amanecer sobre las montañas cafeteras del Meta",
-    caption: "Origen · 550 msnm",
+    caption: "Origen · 1200 - 1600 msnm",
   },
   {
     image: "/assets/story_mountains.png",

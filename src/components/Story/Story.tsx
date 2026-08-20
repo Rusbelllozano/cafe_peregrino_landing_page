@@ -93,7 +93,7 @@ export default function Story() {
             a Tu Taza
           </h2>
           <p className={`${styles.body} story-text-anim`}>
-            En las regiones montañosas del Meta, a 550 metros sobre el nivel
+            En las regiones montañosas del Meta, a 1200 - 1600 metros sobre el nivel
             del mar, nace un café con propósito. Cada grano recorre un camino de
             cuidado, selección y pasión antes de llegar a tus manos.
           </p>

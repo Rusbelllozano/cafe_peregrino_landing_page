@@ -215,7 +215,7 @@ export default function Hero() {
     <section id="hero" ref={sectionRef} className={styles.hero}>
       <div className={styles.content}>
         <p className={`${styles.origin} hero-anim`}>
-          Regiones Montañosas del Meta · 550 msnm
+          Regiones Montañosas del Meta · 1200 - 1600 msnm
         </p>
         <h1 className={`${styles.brandName} hero-anim`}>Café Peregrino</h1>
         <div className={`${styles.badge} hero-anim`}>
@@ -889,7 +889,7 @@ export const storySteps: StoryStep[] = [
   {
     image: "/assets/coffe_background.jpg",
     alt: "Amanecer sobre las montañas cafeteras del Meta",
-    caption: "Origen · 550 msnm",
+    caption: "Origen · 1200 - 1600 msnm",
   },
   {
     image: "/assets/story_mountains.png",
@@ -1009,7 +1009,7 @@ export default function Story() {
             a Tu Taza
           </h2>
           <p className={`${styles.body} story-text-anim`}>
-            En las regiones montañosas del Meta, a 550 metros sobre el nivel
+            En las regiones montañosas del Meta, a 1200 - 1600 metros sobre el nivel
             del mar, nace un café con propósito. Cada grano recorre un camino de
             cuidado, selección y pasión antes de llegar a tus manos.
           </p>
@@ -1160,7 +1160,7 @@ Run: `npm run lint`
 Expected: no errors.
 
 Run: `npm run dev`, open http://localhost:3000 at a desktop width (≥768px)
-Expected: scrolling down into "Nuestra Historia" pins the section (text block on the left stays fixed) while the photo on the right crossfades through all 4 images with their captions ("Origen · 550 msnm" → "El Cafetal" → "El Peregrino" → "Tu Taza") as you keep scrolling; the page un-pins and continues normally after the last photo.
+Expected: scrolling down into "Nuestra Historia" pins the section (text block on the left stays fixed) while the photo on the right crossfades through all 4 images with their captions ("Origen · 1200 - 1600 msnm" → "El Cafetal" → "El Peregrino" → "Tu Taza") as you keep scrolling; the page un-pins and continues normally after the last photo.
 
 Resize DevTools to a mobile width (<768px), reload, and scroll to the section
 Expected: no pinning occurs; the 4 photos render as a simple vertical stack, each fading in as it enters the viewport, each with its caption.
