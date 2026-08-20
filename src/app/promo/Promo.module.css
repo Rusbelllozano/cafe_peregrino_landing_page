@@ -130,7 +130,7 @@
 }
 
 .errorMessage {
-  color: #e63946;
+  color: #ff6b6b;
   font-size: var(--fs-small);
   font-weight: 600;
   margin-top: 0.5rem;
