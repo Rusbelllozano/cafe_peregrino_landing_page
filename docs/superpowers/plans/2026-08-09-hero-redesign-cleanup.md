@@ -138,7 +138,7 @@ export default function Story() {
             a Tu Taza
           </h2>
           <p className={`${styles.body} story-text-anim`}>
-            En las regiones montañosas del Meta, a 550 metros sobre el nivel
+            En las regiones montañosas del Meta, a 1200 - 1600 metros sobre el nivel
             del mar, nace un café con propósito. Cada grano recorre un camino de
             cuidado, selección y pasión antes de llegar a tus manos.
           </p>
@@ -778,7 +778,7 @@ npm run dev > /tmp/cleanup-dev.log 2>&1 &
 DEVPID=$!
 sleep 6
 curl -s -m 5 http://localhost:3000 -o /tmp/cleanup-home.html
-grep -c "Origen · 550 msnm\|El Cafetal\|El Peregrino\|Tu Taza" /tmp/cleanup-home.html || true
+grep -c "Origen · 1200 - 1600 msnm\|El Cafetal\|El Peregrino\|Tu Taza" /tmp/cleanup-home.html || true
 kill $DEVPID 2>/dev/null
 ```
 

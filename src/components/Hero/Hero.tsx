@@ -45,7 +45,7 @@ export default function Hero() {
       <HeroRipple />
       <div className={styles.content}>
         <p className={`${styles.origin} hero-anim`}>
-          Regiones Montañosas del Meta · 550 msnm
+          Regiones Montañosas del Meta · 1200 - 1600 msnm
         </p>
         <h1 className={`${styles.brandName} hero-anim`}>Café Peregrino</h1>
         <div className={`${styles.badge} hero-anim`}>
