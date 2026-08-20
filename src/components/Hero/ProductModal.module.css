@@ -1,0 +1,118 @@
+.dialog {
+  margin: auto;
+  border: none;
+  border-radius: var(--border-radius-lg);
+  padding: 0;
+  max-width: 420px;
+  width: calc(100vw - 2rem);
+  background: var(--cream);
+  color: var(--text-dark);
+}
+
+.dialog::backdrop {
+  background: rgba(19, 41, 61, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+}
+
+.close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-dark);
+  border-radius: 50%;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.close:hover {
+  background: rgba(43, 43, 43, 0.08);
+}
+
+.imageWrap {
+  width: 160px;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f4f0, #ede5dc);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accentLine {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  color: var(--navy);
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  opacity: 0.5;
+}
+
+.notes {
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.specs {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(43, 43, 43, 0.08);
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.specLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  opacity: 0.4;
+}
+
+.specValue {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+}

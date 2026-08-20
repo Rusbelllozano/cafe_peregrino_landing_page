@@ -7,21 +7,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { sendGAEvent } from "@next/third-parties/google";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import { products } from "./products";
+import ProductModal from "./ProductModal";
+import HeroRipple from "./HeroRipple";
 import styles from "./Hero.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const modalRefs = useRef<{ [id: string]: HTMLDialogElement | null }>({});
 
   useEffect(() => {
     const section = sectionRef.current;
-    const imageWrap = imageRef.current;
-    if (!section || !imageWrap) return;
+    if (!section) return;
 
     const ctx = gsap.context(() => {
-      /* Staggered text reveal */
       gsap.fromTo(
         ".hero-anim",
         { opacity: 0, y: 50 },
@@ -29,23 +30,11 @@ export default function Hero() {
           opacity: 1,
           y: 0,
           duration: 1,
-          stagger: 0.2,
+          stagger: 0.15,
           ease: "power3.out",
-          delay: 0.3,
+          delay: 0.2,
         }
       );
-
-      /* Parallax background */
-      gsap.to(imageWrap, {
-        yPercent: 25,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
     }, section);
 
     return () => ctx.revert();
@@ -53,45 +42,70 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={sectionRef} className={styles.hero}>
-      <div ref={imageRef} className={styles.bgImage}>
-        <Image
-          src="/assets/coffe_background.jpg"
-          alt="Cafetales en las regiones montañosas del Meta, Colombia"
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover" }}
-          preload
-        />
-      </div>
-      <div className={styles.overlay} />
+      <HeroRipple />
       <div className={styles.content}>
         <p className={`${styles.origin} hero-anim`}>
-          Regiones Montañosas del Meta · 550 msnm
+          Regiones Montañosas del Meta · 1200 - 1600 msnm
         </p>
-        <h1 className={`${styles.headline} hero-anim`}>
-          Un Viaje
-          <br />
-          Que Despierta
-        </h1>
-        <p className={`${styles.subtitle} hero-anim`}>
-          Un café con pasos de peregrino,
-          <br />
-          buscando a aquel que lo creó.
-        </p>
-        <a
-          href={buildWhatsAppLink("Hola, quiero pedir Café Peregrino")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`cta-button hero-anim`}
-          onClick={() => sendGAEvent('event', 'whatsapp_redirection', { value: 'hero' })}
-        >
-          <WhatsAppIcon />
-          Pedir Ahora
-        </a>
+        <h1 className={`${styles.brandName} hero-anim`}>Café Peregrino</h1>
         <div className={`${styles.badge} hero-anim`}>
           Lote Limitado · Primera Edición
         </div>
+        <div className={styles.columns}>
+          {products.map((product) => (
+            <article key={product.id} className={`${styles.column} hero-anim`}>
+              <div className={styles.imageWrap}>
+                <Image
+                  src={product.image}
+                  alt={`Café Peregrino ${product.name}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                  preload
+                />
+              </div>
+              <div className={styles.info}>
+                <span
+                  className={styles.accentLine}
+                  style={{ background: product.accent }}
+                />
+                <h2 className={styles.productName}>{product.name}</h2>
+                <p className={styles.tagline}>{product.tagline}</p>
+                <a
+                  href={buildWhatsAppLink(product.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-button"
+                  onClick={() =>
+                    sendGAEvent("event", "whatsapp_redirection", {
+                      value: `hero-${product.id}`,
+                    })
+                  }
+                >
+                  <WhatsAppIcon />
+                  Pedir por WhatsApp
+                </a>
+                <button
+                  type="button"
+                  className={styles.detailsLink}
+                  onClick={() => modalRefs.current[product.id]?.showModal()}
+                >
+                  Ver detalles
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
+      {products.map((product) => (
+        <ProductModal
+          key={product.id}
+          product={product}
+          ref={(el) => {
+            modalRefs.current[product.id] = el;
+          }}
+        />
+      ))}
     </section>
   );
 }
